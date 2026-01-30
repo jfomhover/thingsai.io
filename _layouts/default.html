@@ -35,6 +35,9 @@
     {% comment %}Feed auto-discovery links{% endcomment %}
     <link rel="alternate" type="application/atom+xml" title="{{ site.title }} - English" href="{{ '/feed.xml' | relative_url }}">
     <link rel="alternate" type="application/atom+xml" title="{{ site.title }} - Français" href="{{ '/feed-fr.xml' | relative_url }}">
+    
+    {% comment %}Google Analytics{% endcomment %}
+    {% include google-analytics.html %}
   </head>
   <body>
     {% include header.html %}
