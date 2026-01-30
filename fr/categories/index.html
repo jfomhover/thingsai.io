@@ -1,0 +1,77 @@
+---
+layout: page
+title: "Catégories"
+lang: fr
+permalink: /fr/categories/
+---
+
+<div class="categories-list">
+  <h1>Parcourir par Catégorie</h1>
+  
+  <div class="categories-grid">
+    {% for category_data in site.data.categories.categories %}
+      {% assign category_slug = category_data.slug %}
+      {% assign posts_count = site.posts | where: "lang", "fr" | where_exp: "post", "post.categories contains category_slug" | size %}
+      {% assign essays_count = site.essays | where: "lang", "fr" | where_exp: "essay", "essay.categories contains category_slug" | size %}
+      {% assign total_count = posts_count | plus: essays_count %}
+      
+      {% if total_count > 0 %}
+      <div class="category-card">
+        <h2>
+          <a href="{{ '/fr/categories/' | append: category_slug | append: '/' | relative_url }}">
+            {{ category_data.name.fr }}
+          </a>
+        </h2>
+        <p class="category-description">{{ category_data.description.fr }}</p>
+        <p class="category-count">{{ total_count }} {% if total_count == 1 %}article{% else %}articles{% endif %}</p>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.category-card {
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 1.5rem;
+  transition: box-shadow 0.2s;
+}
+
+.category-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.category-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.category-card h2 a {
+  text-decoration: none;
+  color: #0366d6;
+}
+
+.category-card h2 a:hover {
+  text-decoration: underline;
+}
+
+.category-description {
+  color: #586069;
+  margin: 0.5rem 0;
+}
+
+.category-count {
+  color: #6a737d;
+  font-size: 0.9rem;
+  margin: 0.5rem 0 0 0;
+}
+</style>

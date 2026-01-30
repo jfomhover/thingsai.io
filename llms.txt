@@ -1,0 +1,13 @@
+# ThingsAI - Ideas, Learning, and AI Explorations
+
+A platform for sharing ideas, memos, and explorations in AI and computational thinking.
+
+## Site Structure
+- Blog posts: /en/blog/
+- Quick memos: /en/memos/
+- Ideas showcase: /en/ideas/
+- Long-form essays: /en/essays/
+
+## Author
+Written by Jeff Omhover
+Professional portfolio: https://jfomhover.info

@@ -1,0 +1,92 @@
+---
+layout: default
+---
+<link rel="stylesheet" href="{{ '/assets/css/content-page.css' | relative_url }}">
+
+{% comment %}JSON-LD Structured Data for Blog Posts{% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ page.title | escape }}",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ page.author | default: site.author.name }}",
+    "url": "{{ site.url }}"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "{{ site.author.name }}",
+    "url": "{{ site.url }}"
+  },
+  "description": "{{ page.excerpt | default: page.description | strip_html | normalize_whitespace | truncate: 160 | escape }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ site.url }}{{ page.url }}"
+  },
+  "inLanguage": "{{ page.lang | default: site.default_lang }}",
+  {% if page.categories and page.categories.size > 0 %}
+  "keywords": "{{ page.categories | join: ', ' }}",
+  "articleSection": "{{ page.categories | first }}",
+  {% endif %}
+  "url": "{{ site.url }}{{ page.url }}"
+}
+</script>
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <div class="post-badge">
+    {% if page.lang == "fr" %}
+      BLOG
+    {% else %}
+      BLOG
+    {% endif %}
+  </div>
+  
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    {% if page.subtitle %}
+    <p class="post-subtitle">{{ page.subtitle | escape }}</p>
+    {% endif %}
+    {% if page.date %}
+    <p class="post-date">
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {% if page.lang == "fr" %}
+          {{ page.date | date: "%d %B %Y" }}
+        {% else %}
+          {{ page.date | date: "%B %-d, %Y" }}
+        {% endif %}
+      </time>
+    </p>
+    {% endif %}
+  </header>
+
+  {% if page.categories and page.categories.size > 0 %}
+  <div class="post-metadata">
+    <div class="post-category">
+      <strong>
+        {% if page.lang == "fr" %}
+          Catégorie:
+        {% else %}
+          Category:
+        {% endif %}
+      </strong>
+      <span>{{ page.categories | first }}</span>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  {% if page.categories and page.categories.size > 0 %}
+  <div class="post-categories">
+    <strong>Categories:</strong>
+    {% for category in page.categories %}
+      <a href="{{ '/' | append: page.lang | append: '/categories/' | append: category | append: '/' | relative_url }}" class="category">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+  </div>
+  {% endif %}
+</article>

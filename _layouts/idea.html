@@ -1,0 +1,90 @@
+---
+layout: default
+---
+<link rel="stylesheet" href="{{ '/assets/css/content-page.css' | relative_url }}">
+
+{% comment %}JSON-LD Structured Data for Ideas{% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "{{ page.title | escape }}",
+  {% if page.date %}
+  "dateCreated": "{{ page.date | date_to_xmlschema }}",
+  {% endif %}
+  "author": {
+    "@type": "Person",
+    "name": "{{ page.author | default: site.author.name }}",
+    "url": "{{ site.url }}"
+  },
+  "creator": {
+    "@type": "Person",
+    "name": "{{ site.author.name }}",
+    "url": "{{ site.url }}"
+  },
+  "description": "{{ page.excerpt | default: page.description | strip_html | normalize_whitespace | truncate: 160 | escape }}",
+  "inLanguage": "{{ page.lang | default: site.default_lang }}",
+  {% if page.tags and page.tags.size > 0 %}
+  "keywords": "{{ page.tags | join: ', ' }}",
+  {% endif %}
+  {% if page.domain %}
+  "about": "{{ page.domain }}",
+  {% endif %}
+  "url": "{{ site.url }}{{ page.url }}"
+}
+</script>
+
+<article class="idea">
+  <div class="idea-badge">
+    {% if page.lang == "fr" %}
+      IDÉE
+    {% else %}
+      IDEA
+    {% endif %}
+  </div>
+  
+  <header class="idea-header">
+    <h1 class="idea-title">{{ page.title | escape }}</h1>
+    {% if page.subtitle %}
+    <p class="idea-subtitle">{{ page.subtitle | escape }}</p>
+    {% endif %}
+    {% if page.date %}
+    <p class="idea-date">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+    </p>
+    {% endif %}
+  </header>
+
+  <div class="idea-metadata">
+    {% if page.domain %}
+    <div class="idea-domain">
+      <strong>Domain:</strong> <span>{{ page.domain }}</span>
+    </div>
+    {% endif %}
+    
+    {% if page.stage %}
+    <div class="idea-stage">
+      <strong>Stage:</strong> <span>{{ page.stage | capitalize }}</span>
+    </div>
+    {% endif %}
+    
+    {% if page.priority %}
+    <div class="idea-priority">
+      <strong>Priority:</strong> <span>{{ page.priority | capitalize }}</span>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="idea-content">
+    {{ content }}
+  </div>
+
+  {% if page.tags and page.tags.size > 0 %}
+  <div class="idea-tags">
+    <strong>Tags:</strong>
+    {% for tag in page.tags %}
+      <span class="tag">{{ tag }}</span>{% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+  </div>
+  {% endif %}
+</article>

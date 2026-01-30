@@ -1,0 +1,67 @@
+# Category taxonomy for blog posts, essays, and ideas
+# Based on idea collection domains from context/workspace/ideas/
+
+categories:
+  - slug: "ai-systems"
+    name:
+      en: "AI Systems"
+      fr: "Systèmes IA"
+    description:
+      en: "Artificial intelligence, machine learning, and AI systems architecture"
+      fr: "Intelligence artificielle, apprentissage automatique et architecture des systèmes IA"
+  
+  - slug: "identity"
+    name:
+      en: "Identity"
+      fr: "Identité"
+    description:
+      en: "Digital identity, personal branding, and professional presence"
+      fr: "Identité numérique, image de marque personnelle et présence professionnelle"
+  
+  - slug: "knowledge-work"
+    name:
+      en: "Knowledge Work"
+      fr: "Travail du Savoir"
+    description:
+      en: "Productivity, information management, and knowledge systems"
+      fr: "Productivité, gestion de l'information et systèmes de connaissances"
+  
+  - slug: "career"
+    name:
+      en: "Career"
+      fr: "Carrière"
+    description:
+      en: "Career development, professional growth, and leadership"
+      fr: "Développement de carrière, croissance professionnelle et leadership"
+  
+  - slug: "publishing"
+    name:
+      en: "Publishing"
+      fr: "Publication"
+    description:
+      en: "Content creation, writing, and digital publishing"
+      fr: "Création de contenu, écriture et publication numérique"
+  
+  - slug: "repo-meta"
+    name:
+      en: "Repository Meta"
+      fr: "Méta-Dépôt"
+    description:
+      en: "Repository structure, workflows, and meta-processes"
+      fr: "Structure du dépôt, flux de travail et méta-processus"
+  
+  - slug: "technology"
+    name:
+      en: "Technology"
+      fr: "Technologie"
+    description:
+      en: "Software development, programming, and technical topics"
+      fr: "Développement logiciel, programmation et sujets techniques"
+  
+  - slug: "product"
+    name:
+      en: "Product"
+      fr: "Produit"
+    description:
+      en: "Product management, design, and development"
+      fr: "Gestion de produit, conception et développement"

@@ -1,0 +1,260 @@
+---
+layout: default
+---
+<div class="category-page">
+  <header class="category-header">
+    <h1>{{ page.category_name }}</h1>
+    {% if page.category_description %}
+      <p class="category-description">{{ page.category_description }}</p>
+    {% endif %}
+  </header>
+  
+  <div class="content-list">
+    {% assign filtered_posts = site.posts | where: "lang", page.lang | where_exp: "post", "post.categories contains page.category" | sort: "date" | reverse %}
+    {% assign filtered_essays = site.essays | where: "lang", page.lang | where_exp: "essay", "essay.categories contains page.category" | sort: "date" | reverse %}
+    {% assign filtered_ideas = site.ideas | where: "lang", page.lang | where_exp: "idea", "idea.domain == page.category" | sort: "date" | reverse %}
+    
+    {% if filtered_posts.size > 0 %}
+      <section class="posts-section">
+        <h2>{% if page.lang == "en" %}Blog Posts{% else %}Articles de Blog{% endif %}</h2>
+        <div class="posts">
+          {% for post in filtered_posts %}
+            <article class="post-preview">
+              <h3 class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+              </h3>
+              <p class="post-meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">
+                  {% if page.lang == "en" %}
+                    {{ post.date | date: "%B %-d, %Y" }}
+                  {% else %}
+                    {{ post.date | date: "%d %B %Y" }}
+                  {% endif %}
+                </time>
+              </p>
+              {% if post.excerpt %}
+                <div class="post-excerpt">
+                  {{ post.excerpt }}
+                </div>
+              {% endif %}
+              <a href="{{ post.url | relative_url }}" class="read-more">
+                {% if page.lang == "en" %}Read more{% else %}Lire la suite{% endif %} →
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+    
+    {% if filtered_essays.size > 0 %}
+      <section class="essays-section">
+        <h2>{% if page.lang == "en" %}Essays{% else %}Essais{% endif %}</h2>
+        <div class="essays">
+          {% for essay in filtered_essays %}
+            <article class="essay-preview">
+              <h3 class="essay-title">
+                <a href="{{ essay.url | relative_url }}">{{ essay.title | escape }}</a>
+              </h3>
+              <p class="essay-meta">
+                <time datetime="{{ essay.date | date_to_xmlschema }}">
+                  {% if page.lang == "en" %}
+                    {{ essay.date | date: "%B %-d, %Y" }}
+                  {% else %}
+                    {{ essay.date | date: "%d %B %Y" }}
+                  {% endif %}
+                </time>
+              </p>
+              {% if essay.excerpt %}
+                <div class="essay-excerpt">
+                  {{ essay.excerpt }}
+                </div>
+              {% endif %}
+              <a href="{{ essay.url | relative_url }}" class="read-more">
+                {% if page.lang == "en" %}Read more{% else %}Lire la suite{% endif %} →
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+    
+    {% if filtered_ideas.size > 0 %}
+      <section class="ideas-section">
+        <h2>{% if page.lang == "en" %}Ideas{% else %}Idées{% endif %}</h2>
+        <div class="ideas">
+          {% for idea in filtered_ideas %}
+            <article class="idea-preview">
+              <h3 class="idea-title">
+                <a href="{{ idea.url | relative_url }}">{{ idea.title | escape }}</a>
+              </h3>
+              <p class="idea-meta">
+                <time datetime="{{ idea.date | date_to_xmlschema }}">
+                  {% if page.lang == "en" %}
+                    {{ idea.date | date: "%B %-d, %Y" }}
+                  {% else %}
+                    {{ idea.date | date: "%d %B %Y" }}
+                  {% endif %}
+                </time>
+                {% if idea.stage %}
+                  • <span class="stage-badge stage-{{ idea.stage }}">{{ idea.stage }}</span>
+                {% endif %}
+                {% if idea.priority %}
+                  • <span class="priority-badge priority-{{ idea.priority }}">{{ idea.priority }}</span>
+                {% endif %}
+              </p>
+              {% if idea.excerpt %}
+                <div class="idea-excerpt">
+                  {{ idea.excerpt }}
+                </div>
+              {% endif %}
+              <a href="{{ idea.url | relative_url }}" class="read-more">
+                {% if page.lang == "en" %}View idea{% else %}Voir l'idée{% endif %} →
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+    
+    {% if filtered_posts.size == 0 and filtered_essays.size == 0 and filtered_ideas.size == 0 %}
+      <p>{% if page.lang == "en" %}No content in this category yet.{% else %}Aucun contenu dans cette catégorie pour le moment.{% endif %}</p>
+    {% endif %}
+  </div>
+  
+  <div class="category-navigation">
+    <a href="{{ '/' | append: page.lang | append: '/categories/' | relative_url }}">
+      {% if page.lang == "en" %}← Back to all categories{% else %}← Retour aux catégories{% endif %}
+    </a>
+  </div>
+</div>
+
+<style>
+.category-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.category-header {
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e1e4e8;
+}
+
+.category-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.category-description {
+  color: #586069;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.content-list section {
+  margin-bottom: 3rem;
+}
+
+.content-list h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #24292e;
+}
+
+.post-preview, .essay-preview, .idea-preview {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+.post-preview:last-child, .essay-preview:last-child, .idea-preview:last-child {
+  border-bottom: none;
+}
+
+.post-title, .essay-title, .idea-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.post-title a, .essay-title a, .idea-title a {
+  text-decoration: none;
+  color: #0366d6;
+}
+
+.post-title a:hover, .essay-title a:hover, .idea-title a:hover {
+  text-decoration: underline;
+}
+
+.post-meta, .essay-meta, .idea-meta {
+  color: #6a737d;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-excerpt, .essay-excerpt, .idea-excerpt {
+  margin: 1rem 0;
+  color: #24292e;
+}
+
+.stage-badge, .priority-badge {
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.stage-raw {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.stage-elaborated {
+  background-color: #fff3e0;
+  color: #e65100;
+}
+
+.stage-refined {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.priority-high {
+  background-color: #ffebee;
+  color: #b71c1c;
+}
+
+.priority-medium {
+  background-color: #fff8e1;
+  color: #f57f17;
+}
+
+.priority-low {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.read-more {
+  color: #0366d6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+.category-navigation {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e1e4e8;
+}
+
+.category-navigation a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.category-navigation a:hover {
+  text-decoration: underline;
+}
+</style>

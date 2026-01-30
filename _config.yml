@@ -1,4 +1,84 @@
-title: Coming Soon
-description: Website coming soon
-baseurl: ""
+# Site settings
+title: "ThingsAI.io"
+tagline: "Ideas, Learning, and AI Explorations"
+description: "A platform for sharing ideas, memos, and explorations in AI and computational thinking"
 url: "https://thingsai.io"
+baseurl: ""
+
+# Language settings
+languages: ["en", "fr"]
+default_lang: "en"
+language_names:
+  en: "English"
+  fr: "Français"
+
+lang_titles:
+  en: "ThingsAI"
+  fr: "ThingsAI"
+lang_taglines:
+  en: "Ideas, Learning, and AI Explorations"
+  fr: "Idées, Apprentissage et Explorations IA"
+lang_descriptions:
+  en: "A platform for sharing ideas, memos, and explorations in AI and computational thinking"
+  fr: "Une plateforme pour partager des idées, mémos et explorations en IA et pensée computationnelle"
+
+# Author information (same author, different context)
+author:
+  name: "Jeff Omhover"
+
+# Social links
+social:
+  github: "jfomhover"
+  linkedin: "jfomhover"
+  bluesky: "jeffinsea.bsky.social"
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:collection/:path/
+  flashcards:
+    output: true
+    permalink: /memos/:path/
+  ideas:
+    output: true
+    permalink: /ideas/:path/
+  essays:
+    output: true
+    permalink: /essays/:path/
+
+# SEO settings
+twitter:
+  username: "jeffinsea"
+  card: summary_large_image
+
+social_links:
+  - https://github.com/jfomhover
+  - https://linkedin.com/in/jfomhover
+  - https://jeffinsea.bsky.social
+
+# Cross-site linking
+sister_site:
+  name: "jfomhover.info"
+  url: "https://jfomhover.info"
+  description: "Professional portfolio and resume"
+
+# Pagination
+paginate: 10
+paginate_path: "/blog/page:num/"
+
+# Build settings
+markdown: kramdown
+theme: null
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-paginate
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .jekyll-cache/

@@ -1,0 +1,54 @@
+---
+layout: page
+title: "Essays"
+lang: en
+permalink: /en/essays/
+redirect_to: /en/content/
+---
+
+<p>This page has moved to <a href="/en/content/">Content</a>. You will be redirected automatically.</p>
+
+<script>
+  window.location.href = '/en/content/';
+</script>
+  
+  {% if essays_en.size > 0 %}
+    <div class="essays">
+      {% for essay in essays_en %}
+        <article class="essay-preview">
+          <h2 class="essay-title">
+            <a href="{{ essay.url | relative_url }}">{{ essay.title | escape }}</a>
+          </h2>
+          <p class="essay-meta">
+            <time datetime="{{ essay.date | date_to_xmlschema }}">
+              {{ essay.date | date: "%B %-d, %Y" }}
+            </time>
+            {% if essay.categories and essay.categories.size > 0 %}
+              <span class="essay-categories-inline">
+                • 
+                {% for category in essay.categories %}
+                  <a href="{{ '/en/categories/' | append: category | append: '/' | relative_url }}">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+                {% endfor %}
+              </span>
+            {% endif %}
+            {% if essay.content %}
+              {% comment %}Reading time: 200 words per minute (industry standard){% endcomment %}
+              {% assign words = essay.content | number_of_words %}
+              {% assign reading_time = words | divided_by: 200 %}
+              {% if reading_time == 0 %}{% assign reading_time = 1 %}{% endif %}
+              <span class="reading-time">• {{ reading_time }} min read</span>
+            {% endif %}
+          </p>
+          {% if essay.excerpt %}
+            <div class="essay-excerpt">
+              {{ essay.excerpt }}
+            </div>
+          {% endif %}
+          <a href="{{ essay.url | relative_url }}" class="read-more">Read essay →</a>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No essays yet. Check back soon!</p>
+  {% endif %}
+</div>

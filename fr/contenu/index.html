@@ -1,0 +1,251 @@
+---
+layout: page
+title: "Contenu"
+lang: fr
+permalink: /fr/contenu/
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/content.css' | relative_url }}">
+
+<div class="content-list">
+  <h1>Flux</h1>
+  
+  <!-- Boutons de filtrage -->
+  <div class="content-filters">
+    <h3>Filtrer par Type :</h3>
+    <div class="filter-buttons">
+      <button class="filter-btn active" data-filter="all">Tout</button>
+      <button class="filter-btn" data-filter="blog">Blog</button>
+      <button class="filter-btn" data-filter="essay">Essais</button>
+      <button class="filter-btn" data-filter="idea">Idées</button>
+      <button class="filter-btn" data-filter="memo">Mémos</button>
+    </div>
+  </div>
+  
+  <!-- Grille de contenu -->
+  <div class="content-grid">
+    {% comment %}
+    Fusionner toutes les collections filtrées par langue
+    {% endcomment %}
+    {% assign posts_fr = site.posts | where: "lang", "fr" %}
+    {% assign essays_fr = site.essays | where: "lang", "fr" %}
+    {% assign ideas_fr = site.ideas | where: "lang", "fr" %}
+    {% assign memos_fr = site.flashcards | where: "lang", "fr" %}
+    
+    {% comment %}
+    Combiner tous les éléments
+    {% endcomment %}
+    {% assign all_content = "" | split: "" %}
+    {% assign all_content = all_content | concat: posts_fr %}
+    {% assign all_content = all_content | concat: essays_fr %}
+    {% assign all_content = all_content | concat: ideas_fr %}
+    {% assign all_content = all_content | concat: memos_fr %}
+    
+    {% comment %}
+    Trier par date décroissante (plus récent en premier)
+    {% endcomment %}
+    {% assign sorted_content = all_content | sort: "date" | reverse %}
+    
+    {% comment %}
+    Rendre les cartes pour chaque élément
+    {% endcomment %}
+    {% for item in sorted_content %}
+      {% comment %}Déterminer le type de contenu{% endcomment %}
+      {% assign content_type = "blog" %}
+      {% if item.collection == "essays" %}
+        {% assign content_type = "essay" %}
+      {% elsif item.collection == "ideas" %}
+        {% assign content_type = "idea" %}
+      {% elsif item.collection == "flashcards" %}
+        {% assign content_type = "memo" %}
+      {% endif %}
+      
+      {% comment %}Articles de blog{% endcomment %}
+      {% if content_type == "blog" %}
+        <article class="content-card" data-type="blog">
+          <div class="card-badge card-badge-blog">BLOG</div>
+          
+          <div class="card-header">
+            <h2 class="card-title">
+              <a href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
+            </h2>
+            {% if item.excerpt %}
+            <p class="card-excerpt">{{ item.excerpt | strip_html | truncatewords: 60 }}</p>
+            {% endif %}
+          </div>
+          
+          <div class="card-meta">
+            <div class="card-date">
+              <strong>Publié :</strong>
+              <time datetime="{{ item.date | date_to_xmlschema }}">
+                {{ item.date | date: "%-d %B %Y" }}
+              </time>
+            </div>
+            {% if item.categories and item.categories.size > 0 %}
+            <div class="card-categories">
+              <strong>Catégories :</strong>
+              {% for category in item.categories limit:3 %}
+                <span class="category-tag">{{ category }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          
+          <a href="{{ item.url | relative_url }}" class="card-link">Lire l'article →</a>
+        </article>
+      
+      {% comment %}Essais{% endcomment %}
+      {% elsif content_type == "essay" %}
+        <article class="content-card" data-type="essay">
+          <div class="card-badge card-badge-essay">ESSAI</div>
+          
+          <div class="card-header">
+            <h2 class="card-title">
+              <a href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
+            </h2>
+            {% if item.excerpt %}
+            <p class="card-excerpt">{{ item.excerpt | strip_html | truncatewords: 30 }}</p>
+            {% endif %}
+          </div>
+          
+          <div class="card-meta">
+            <div class="card-date">
+              <strong>Publié :</strong>
+              <time datetime="{{ item.date | date_to_xmlschema }}">
+                {{ item.date | date: "%-d %B %Y" }}
+              </time>
+            </div>
+            {% if item.content %}
+              {% assign words = item.content | number_of_words %}
+              {% assign reading_time = words | divided_by: 200 %}
+              {% if reading_time == 0 %}{% assign reading_time = 1 %}{% endif %}
+              <div class="card-reading-time">
+                <strong>Temps de lecture :</strong> {{ reading_time }} min
+              </div>
+            {% endif %}
+          </div>
+          
+          <a href="{{ item.url | relative_url }}" class="card-link">Lire l'essai →</a>
+        </article>
+      
+      {% comment %}Idées{% endcomment %}
+      {% elsif content_type == "idea" %}
+        <article class="content-card" data-type="idea">
+          <div class="card-badge card-badge-idea">IDÉE</div>
+          
+          <div class="card-header">
+            <h2 class="card-title">
+              <a href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
+            </h2>
+            {% if item.subtitle %}
+            <p class="card-subtitle">{{ item.subtitle | escape }}</p>
+            {% endif %}
+            {% if item.excerpt %}
+            <p class="card-excerpt">{{ item.excerpt | strip_html | truncatewords: 60 }}</p>
+            {% endif %}
+          </div>
+          
+          <div class="card-meta">
+            <div class="card-date">
+              <strong>Créé :</strong>
+              <time datetime="{{ item.date | date_to_xmlschema }}">
+                {{ item.date | date: "%-d %B %Y" }}
+              </time>
+            </div>
+            {% if item.domain %}
+            <div class="card-domain">
+              <strong>Domaine :</strong>
+              <span class="domain-tag">{{ item.domain | replace: "-", " " | capitalize }}</span>
+            </div>
+            {% endif %}
+            {% if item.status %}
+            <div class="card-status">
+              <strong>Statut :</strong>
+              <span class="status-tag status-{{ item.status }}">{{ item.status | capitalize }}</span>
+            </div>
+            {% endif %}
+          </div>
+          
+          <a href="{{ item.url | relative_url }}" class="card-link">Voir l'idée →</a>
+        </article>
+      
+      {% comment %}Mémos{% endcomment %}
+      {% elsif content_type == "memo" %}
+        <article class="content-card" data-type="memo">
+          <div class="card-badge card-badge-memo">MÉMO</div>
+          
+          <div class="card-header">
+            <h2 class="card-title">
+              <a href="{{ item.url | relative_url }}">{{ item.title | escape }}</a>
+            </h2>
+            {% if item.subtitle %}
+            <p class="card-subtitle">{{ item.subtitle | escape }}</p>
+            {% endif %}
+            {% if item.excerpt %}
+            <p class="card-excerpt">{{ item.excerpt | strip_html | truncatewords: 60 }}</p>
+            {% endif %}
+          </div>
+          
+          <div class="card-meta">
+            <div class="card-date">
+              <strong>Mis à jour :</strong>
+              <time datetime="{{ item.date | date_to_xmlschema }}">
+                {{ item.date | date: "%-d %B %Y" }}
+              </time>
+            </div>
+            {% if item.topic %}
+            <div class="card-topic">
+              <strong>Sujet :</strong>
+              <span class="topic-tag">{{ item.topic | replace: "-", " " | capitalize }}</span>
+            </div>
+            {% endif %}
+          </div>
+          
+          <a href="{{ item.url | relative_url }}" class="card-link">Voir le mémo →</a>
+        </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+  
+  {% comment %}État vide{% endcomment %}
+  <div class="empty-state" style="display: none;">
+    <p>Aucun contenu trouvé pour le filtre sélectionné. Essayez de sélectionner un autre type de contenu ou de voir tout le contenu.</p>
+  </div>
+</div>
+
+<script>
+// Fonctionnalité de filtrage
+document.addEventListener('DOMContentLoaded', function() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const contentCards = document.querySelectorAll('.content-card');
+  const emptyState = document.querySelector('.empty-state');
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const filter = this.getAttribute('data-filter');
+      
+      // Mettre à jour le bouton actif
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Filtrer les cartes
+      let visibleCount = 0;
+      contentCards.forEach(card => {
+        if (filter === 'all' || card.getAttribute('data-type') === filter) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Afficher/masquer l'état vide
+      if (visibleCount === 0) {
+        emptyState.style.display = 'block';
+      } else {
+        emptyState.style.display = 'none';
+      }
+    });
+  });
+});
+</script>

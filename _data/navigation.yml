@@ -1,0 +1,19 @@
+# English navigation
+en:
+  main:
+    - title: "Home"
+      url: "/en/"
+    - title: "Feed"
+      url: "/en/content/"
+    - title: "About"
+      url: "/en/about/"
+
+# French navigation
+fr:
+  main:
+    - title: "Accueil"
+      url: "/fr/"
+    - title: "Flux"
+      url: "/fr/contenu/"
+    - title: "À propos"
+      url: "/fr/about/"

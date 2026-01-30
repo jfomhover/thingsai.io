@@ -1,0 +1,54 @@
+---
+layout: page
+title: "Blog"
+lang: fr
+permalink: /fr/blog/
+redirect_to: /fr/contenu/
+---
+
+<p>Cette page a déménagé vers <a href="/fr/contenu/">Contenu</a>. Vous serez redirigé automatiquement.</p>
+
+<script>
+  window.location.href = '/fr/contenu/';
+</script>
+
+<link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
+
+<div class="blog-list">
+  <h1>Articles de Blog</h1>
+  
+  {% assign posts_fr = site.posts | where: "lang", "fr" | sort: "date" | reverse %}
+  
+  {% if posts_fr.size > 0 %}
+    <div class="posts">
+      {% for post in posts_fr %}
+        <article class="post-preview">
+          <h2 class="post-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </h2>
+          <p class="post-meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">
+              {{ post.date | date: "%d %B %Y" }}
+            </time>
+            {% if post.categories and post.categories.size > 0 %}
+              <span class="post-categories-inline">
+                • 
+                {% for category in post.categories %}
+                  <a href="{{ '/fr/categories/' | append: category | append: '/' | relative_url }}">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+                {% endfor %}
+              </span>
+            {% endif %}
+          </p>
+          {% if post.excerpt %}
+            <div class="post-excerpt">
+              {{ post.excerpt }}
+            </div>
+          {% endif %}
+          <a href="{{ post.url | relative_url }}" class="read-more">Lire la suite →</a>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Aucun article de blog pour le moment. Revenez bientôt!</p>
+  {% endif %}
+</div>

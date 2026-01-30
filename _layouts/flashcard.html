@@ -1,0 +1,104 @@
+---
+layout: default
+---
+<link rel="stylesheet" href="{{ '/assets/css/content-page.css' | relative_url }}">
+
+{% comment %}JSON-LD Structured Data for Memos{% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "{{ page.title | escape }}",
+  {% if page.date %}
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  {% endif %}
+  "author": {
+    "@type": "Person",
+    "name": "{{ page.author | default: site.author.name }}",
+    "url": "{{ site.url }}"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "{{ site.author.name }}",
+    "url": "{{ site.url }}"
+  },
+  "description": "{{ page.excerpt | default: page.description | strip_html | normalize_whitespace | truncate: 160 | escape }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ site.url }}{{ page.url }}"
+  },
+  "inLanguage": "{{ page.lang | default: site.default_lang }}",
+  {% if page.tags and page.tags.size > 0 %}
+  "keywords": "{{ page.tags | join: ', ' }}",
+  {% endif %}
+  {% if page.topic %}
+  "about": "{{ page.topic }}",
+  {% endif %}
+  "url": "{{ site.url }}{{ page.url }}",
+  "educationalUse": "reference guide"
+}
+</script>
+
+<article class="flashcard">
+  <div class="flashcard-badge">
+    {% if page.lang == "fr" %}
+      MÉMO
+    {% else %}
+      MEMO
+    {% endif %}
+  </div>
+  
+  <header class="flashcard-header">
+    <h1 class="flashcard-title">{{ page.title | escape }}</h1>
+    {% if page.subtitle %}
+    <p class="flashcard-subtitle">{{ page.subtitle | escape }}</p>
+    {% endif %}
+    {% if page.date %}
+    <p class="flashcard-date">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+    </p>
+    {% endif %}
+  </header>
+
+  <div class="flashcard-metadata">
+    {% if page.topic %}
+    <div class="flashcard-topic">
+      <strong>
+        {% if page.lang == "fr" %}
+          Sujet:
+        {% else %}
+          Topic:
+        {% endif %}
+      </strong>
+      <span class="topic-{{ page.topic }}">{{ page.topic }}</span>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="flashcard-content">
+    {{ content }}
+  </div>
+
+  {% if page.tags and page.tags.size > 0 %}
+  <div class="flashcard-tags">
+    <strong>
+      {% if page.lang == "fr" %}
+        Mots-clés:
+      {% else %}
+        Tags:
+      {% endif %}
+    </strong>
+    {% for tag in page.tags %}
+      <span class="tag">{{ tag }}</span>{% unless forloop.last %}, {% endunless %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  
+  {% if page.source %}
+  <div class="flashcard-source">
+    <strong>Source:</strong>
+    {{ page.source }}
+  </div>
+  {% endif %}
+</article>

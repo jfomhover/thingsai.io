@@ -1,0 +1,41 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ site.title }} - {{ site.tagline }}</title>
+  <link href="{{ site.url }}{{ site.baseurl }}/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="{{ site.url }}{{ site.baseurl }}/" rel="alternate" type="text/html"/>
+  <updated>{{ site.time | date_to_xmlschema }}</updated>
+  <id>{{ site.url }}{{ site.baseurl }}/</id>
+  <author>
+    <name>{{ site.author.name }}</name>
+    <email>{{ site.author.email }}</email>
+  </author>
+  
+  {% assign posts_en = site.posts | where: "lang", "en" | sort: "date" | reverse %}
+  {% assign essays_en = site.essays | where: "lang", "en" | sort: "date" | reverse %}
+  {% assign all_content = posts_en | concat: essays_en | sort: "date" | reverse | slice: 0, 20 %}
+  
+  {% for item in all_content %}
+  <entry>
+    <title>{{ item.title | xml_escape }}</title>
+    <link href="{{ site.url }}{{ site.baseurl }}{{ item.url }}" rel="alternate" type="text/html"/>
+    <published>{{ item.date | date_to_xmlschema }}</published>
+    <updated>{{ item.date | date_to_xmlschema }}</updated>
+    <id>{{ site.url }}{{ site.baseurl }}{{ item.id }}</id>
+    <content type="html">{{ item.content | xml_escape }}</content>
+    <author>
+      <name>{{ site.author.name }}</name>
+    </author>
+    {% if item.categories %}
+      {% for category in item.categories %}
+      <category term="{{ category | xml_escape }}"/>
+      {% endfor %}
+    {% endif %}
+    {% if item.excerpt %}
+    <summary>{{ item.excerpt | strip_html | xml_escape }}</summary>
+    {% endif %}
+  </entry>
+  {% endfor %}
+</feed>

@@ -1,0 +1,63 @@
+---
+layout: page
+title: "Essais"
+lang: fr
+permalink: /fr/essais/
+redirect_to: /fr/contenu/
+---
+
+<p>Cette page a déménagé vers <a href="/fr/contenu/">Contenu</a>. Vous serez redirigé automatiquement.</p>
+
+<script>
+  window.location.href = '/fr/contenu/';
+</script>
+
+<link rel="stylesheet" href="{{ '/assets/css/essay.css' | relative_url }}">
+
+<div class="essays-list">
+  <h1>Essais</h1>
+  
+  <p class="essays-intro">Articles de fond et explorations approfondies d'idées.</p>
+  
+  {% assign essays_fr = site.essays | where: "lang", "fr" | sort: "date" | reverse %}
+  
+  {% if essays_fr.size > 0 %}
+    <div class="essays">
+      {% for essay in essays_fr %}
+        <article class="essay-preview">
+          <h2 class="essay-title">
+            <a href="{{ essay.url | relative_url }}">{{ essay.title | escape }}</a>
+          </h2>
+          <p class="essay-meta">
+            <time datetime="{{ essay.date | date_to_xmlschema }}">
+              {{ essay.date | date: "%d %B %Y" }}
+            </time>
+            {% if essay.categories and essay.categories.size > 0 %}
+              <span class="essay-categories-inline">
+                • 
+                {% for category in essay.categories %}
+                  <a href="{{ '/fr/categories/' | append: category | append: '/' | relative_url }}">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+                {% endfor %}
+              </span>
+            {% endif %}
+            {% if essay.content %}
+              {% comment %}Reading time: 200 words per minute (industry standard){% endcomment %}
+              {% assign words = essay.content | number_of_words %}
+              {% assign reading_time = words | divided_by: 200 %}
+              {% if reading_time == 0 %}{% assign reading_time = 1 %}{% endif %}
+              <span class="reading-time">• {{ reading_time }} min de lecture</span>
+            {% endif %}
+          </p>
+          {% if essay.excerpt %}
+            <div class="essay-excerpt">
+              {{ essay.excerpt }}
+            </div>
+          {% endif %}
+          <a href="{{ essay.url | relative_url }}" class="read-more">Lire l'essai →</a>
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>Aucun essai pour le moment. Revenez bientôt !</p>
+  {% endif %}
+</div>
