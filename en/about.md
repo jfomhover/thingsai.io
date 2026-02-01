@@ -5,7 +5,17 @@ lang: en
 permalink: /en/about/
 ---
 
-# Background
+<div class="about-hero">
+  <img src="{{ '/assets/images/banner.jpg' | relative_url }}" alt="Notebooks and handwritten notes">
+</div>
+
+# Blog curated by Jeff Omhover
+
+<div class="profile-photo">
+  <img src="{{ '/assets/images/selfie.jpg' | relative_url }}" alt="Jeff Omhover">
+</div>
+
+## Background
 
 Born and raised in France, I spent over a decade in French academia as an Associate Professor at Arts et Métiers ParisTech, one of France's prestigious Grandes Écoles for engineering. My academic work focused on applying machine learning to industrial design and manufacturing challenges, bridging theoretical research with practical applications.
 

@@ -249,6 +249,45 @@ body {
   flex: 1;
 }
 
+/* About page hero banner */
+.about-hero {
+  margin: 0 0 40px 0;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.about-hero img {
+  width: 100%;
+  height: auto;
+  max-height: 350px;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-photo {
+  float: right;
+  margin: 0 0 20px 30px;
+  max-width: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.profile-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .profile-photo {
+    float: none;
+    margin: 20px auto;
+    max-width: 250px;
+  }
+}
+
 /* Footer */
 .site-footer {
   border-top: 1px solid var(--border-color);
@@ -352,7 +391,7 @@ body {
 }
 
 .home-hero .author-link {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text-tertiary);
   margin: 0;
 }

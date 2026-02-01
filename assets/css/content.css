@@ -6,22 +6,23 @@
   --thingsai-cyan: #00CED1;
   --thingsai-cyan-dark: #00a8aa;
   
-  /* Type-specific color gradients - all using cyan */
-  --blog-gradient: linear-gradient(135deg, #00CED1 0%, #00a8aa 100%);
-  --blog-color: #00CED1;
-  --blog-border: #00a8aa;
+  /* Type-specific color gradients - Blue-Purple spectrum */
+  /* Essays: Royal Blue | Memos: Teal | Ideas: Purple | Blog: Slate Blue */
+  --essay-gradient: linear-gradient(135deg, #4169E1 0%, #2a52c7 100%);
+  --essay-color: #4169E1;
+  --essay-border: #2a52c7;
   
-  --essay-gradient: linear-gradient(135deg, #00CED1 0%, #00a8aa 100%);
-  --essay-color: #00CED1;
-  --essay-border: #00a8aa;
+  --memo-gradient: linear-gradient(135deg, #20B2AA 0%, #1a9388 100%);
+  --memo-color: #20B2AA;
+  --memo-border: #1a9388;
   
-  --idea-gradient: linear-gradient(135deg, #00CED1 0%, #00a8aa 100%);
-  --idea-color: #00CED1;
-  --idea-border: #00a8aa;
+  --idea-gradient: linear-gradient(135deg, #8B5CF6 0%, #7c3aed 100%);
+  --idea-color: #8B5CF6;
+  --idea-border: #7c3aed;
   
-  --memo-gradient: linear-gradient(135deg, #00CED1 0%, #00a8aa 100%);
-  --memo-color: #00CED1;
-  --memo-border: #00a8aa;
+  --blog-gradient: linear-gradient(135deg, #6B7FD7 0%, #5668c7 100%);
+  --blog-color: #6B7FD7;
+  --blog-border: #5668c7;
   
   /* Light mode colors */
   --bg-light: #fafafa;
@@ -210,24 +211,24 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.card-badge-blog {
-  background: var(--blog-gradient);
-  box-shadow: 0 4px 10px rgba(0, 206, 209, 0.4);
-}
-
 .card-badge-essay {
   background: var(--essay-gradient);
-  box-shadow: 0 4px 10px rgba(0, 206, 209, 0.4);
-}
-
-.card-badge-idea {
-  background: var(--idea-gradient);
-  box-shadow: 0 4px 10px rgba(0, 206, 209, 0.4);
+  box-shadow: 0 4px 10px rgba(65, 105, 225, 0.4);
 }
 
 .card-badge-memo {
   background: var(--memo-gradient);
-  box-shadow: 0 4px 10px rgba(0, 206, 209, 0.4);
+  box-shadow: 0 4px 10px rgba(32, 178, 170, 0.4);
+}
+
+.card-badge-idea {
+  background: var(--idea-gradient);
+  box-shadow: 0 4px 10px rgba(139, 92, 246, 0.4);
+}
+
+.card-badge-blog {
+  background: var(--blog-gradient);
+  box-shadow: 0 4px 10px rgba(107, 127, 215, 0.4);
 }
 
 /* Card Header */
@@ -329,6 +330,12 @@
 .topic-tag {
   color: var(--memo-color);
   border-color: var(--memo-color);
+}
+
+/* Essay cards should use essay color for topic tags */
+.content-card[data-type="essay"] .topic-tag {
+  color: var(--essay-color);
+  border-color: var(--essay-color);
 }
 
 .status-tag {

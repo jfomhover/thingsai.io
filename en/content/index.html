@@ -115,6 +115,12 @@ permalink: /en/content/
                 {{ item.date | date: "%B %-d, %Y" }}
               </time>
             </div>
+            {% if item.topic %}
+            <div class="card-topic">
+              <strong>Topic:</strong>
+              <span class="topic-tag">{{ item.topic }}</span>
+            </div>
+            {% endif %}
             {% if item.content %}
               {% assign words = item.content | number_of_words %}
               {% assign reading_time = words | divided_by: 200 %}

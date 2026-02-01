@@ -1,5 +1,6 @@
 /* Shared styles for content pages (ideas, memos, essays, blog posts) */
-/* Unified design with cyan branding */
+/* Color scheme: Blue-Purple gradient spectrum */
+/* Essays: Royal Blue #4169E1 | Memos: Teal #20B2AA | Ideas: Purple #8B5CF6 | Blog: Slate Blue #6B7FD7 */
 
 /* Main container */
 .idea,
@@ -15,45 +16,132 @@
   padding: 40px;
 }
 
-/* Badge */
-.idea-badge,
-.flashcard-badge,
-.essay-badge,
-.post-badge {
+/* Badge - Individual colors per content type */
+.essay-badge {
   position: absolute;
   top: -10px;
   right: 30px;
-  background: linear-gradient(135deg, #00CED1 0%, #00a8aa 100%);
+  background: linear-gradient(135deg, #4169E1 0%, #2a52c7 100%);
   color: white;
   padding: 8px 20px;
   border-radius: 20px;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.5px;
-  box-shadow: 0 4px 10px rgba(0, 206, 209, 0.4);
+  box-shadow: 0 4px 10px rgba(65, 105, 225, 0.4);
 }
 
-/* Header */
-.idea-header,
-.flashcard-header,
-.essay-header,
-.post-header {
-  border-bottom: 3px solid #00CED1;
+.flashcard-badge {
+  position: absolute;
+  top: -10px;
+  right: 30px;
+  background: linear-gradient(135deg, #20B2AA 0%, #1a9388 100%);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  box-shadow: 0 4px 10px rgba(32, 178, 170, 0.4);
+}
+
+.idea-badge {
+  position: absolute;
+  top: -10px;
+  right: 30px;
+  background: linear-gradient(135deg, #8B5CF6 0%, #7c3aed 100%);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  box-shadow: 0 4px 10px rgba(139, 92, 246, 0.4);
+}
+
+.post-badge {
+  position: absolute;
+  top: -10px;
+  right: 30px;
+  background: linear-gradient(135deg, #6B7FD7 0%, #5668c7 100%);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  box-shadow: 0 4px 10px rgba(107, 127, 215, 0.4);
+}
+
+/* Header - Individual colors per content type */
+.essay-header {
+  border-bottom: 3px solid #4169E1;
   padding-bottom: 25px;
   margin-bottom: 25px;
 }
 
-/* Title */
-.idea-title,
-.flashcard-title,
-.essay-title,
+.flashcard-header {
+  border-bottom: 3px solid #20B2AA;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+.idea-header {
+  border-bottom: 3px solid #8B5CF6;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+.post-header {
+  border-bottom: 3px solid #6B7FD7;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+/* Title - Individual colors per content type */
+.essay-title {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #1a1a1a;
+  margin: 0 0 10px 0;
+  background: linear-gradient(135deg, #4169E1 0%, #2a52c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.flashcard-title {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #1a1a1a;
+  margin: 0 0 10px 0;
+  background: linear-gradient(135deg, #20B2AA 0%, #1a9388 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.idea-title {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #1a1a1a;
+  margin: 0 0 10px 0;
+  background: linear-gradient(135deg, #8B5CF6 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .post-title {
   font-size: 42px;
   font-weight: 800;
   line-height: 1.2;
   color: #1a1a1a;
   margin: 0 0 10px 0;
-  background: linear-gradient(135deg, #00CED1 0%, #00a8aa 100%);
+  background: linear-gradient(135deg, #6B7FD7 0%, #5668c7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -83,19 +171,49 @@
   font-weight: 400;
 }
 
-/* Metadata box */
-.idea-metadata,
-.flashcard-metadata,
-.essay-metadata,
+/* Metadata box - Individual colors per content type */
+.essay-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #eef1fa 100%);
+  border-radius: 10px;
+  border-left: 5px solid #4169E1;
+}
+
+.flashcard-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8faf8 100%);
+  border-radius: 10px;
+  border-left: 5px solid #20B2AA;
+}
+
+.idea-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #f3f0fc 100%);
+  border-radius: 10px;
+  border-left: 5px solid #8B5CF6;
+}
+
 .post-metadata {
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
   margin-bottom: 30px;
   padding: 20px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e8f4f5 100%);
+  background: linear-gradient(135deg, #f5f7fa 0%, #eef2fa 100%);
   border-radius: 10px;
-  border-left: 5px solid #00CED1;
+  border-left: 5px solid #6B7FD7;
 }
 
 /* Metadata items */
@@ -103,6 +221,7 @@
 .idea-priority,
 .idea-domain,
 .flashcard-topic,
+.essay-topic,
 .essay-category,
 .essay-reading-time,
 .post-category {
@@ -115,6 +234,7 @@
 .idea-priority strong,
 .idea-domain strong,
 .flashcard-topic strong,
+.essay-topic strong,
 .essay-category strong,
 .essay-reading-time strong,
 .post-category strong {
@@ -125,12 +245,47 @@
   letter-spacing: 1px;
 }
 
+/* Metadata badge colors - Individual per content type */
+.essay-topic span,
+.essay-category span,
+.essay-reading-time span {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+  background-color: white;
+  color: #4169E1;
+  border: 2px solid #4169E1;
+  box-shadow: 0 2px 6px rgba(65, 105, 225, 0.3);
+}
+
+.flashcard-topic span {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+  background-color: white;
+  color: #20B2AA;
+  border: 2px solid #20B2AA;
+  box-shadow: 0 2px 6px rgba(32, 178, 170, 0.3);
+}
+
 .idea-stage span,
 .idea-priority span,
-.idea-domain span,
-.flashcard-topic span,
-.essay-category span,
-.essay-reading-time span,
+.idea-domain span {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+  background-color: white;
+  color: #8B5CF6;
+  border: 2px solid #8B5CF6;
+  box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3);
+}
+
 .post-category span {
   padding: 6px 16px;
   border-radius: 20px;
@@ -138,10 +293,12 @@
   font-weight: 600;
   text-transform: capitalize;
   background-color: white;
-  color: #00CED1;
-  border: 2px solid #00CED1;
-  box-shadow: 0 2px 6px rgba(0, 206, 209, 0.3);
+  color: #6B7FD7;
+  border: 2px solid #6B7FD7;
+  box-shadow: 0 2px 6px rgba(107, 127, 215, 0.3);
 }
+
+
 
 /* Content */
 .idea-content,
@@ -364,22 +521,40 @@
 [data-theme="dark"] .idea-priority strong,
 [data-theme="dark"] .idea-domain strong,
 [data-theme="dark"] .flashcard-topic strong,
+[data-theme="dark"] .essay-topic strong,
 [data-theme="dark"] .essay-category strong,
 [data-theme="dark"] .essay-reading-time strong,
 [data-theme="dark"] .post-category strong {
   color: #d8d8d8;
 }
 
+/* Dark mode badge colors - Individual per content type */
+[data-theme="dark"] .essay-topic span,
+[data-theme="dark"] .essay-category span,
+[data-theme="dark"] .essay-reading-time span {
+  background-color: #1a1a1a;
+  color: #4169E1;
+  border-color: #4169E1;
+}
+
+[data-theme="dark"] .flashcard-topic span {
+  background-color: #1a1a1a;
+  color: #20B2AA;
+  border-color: #20B2AA;
+}
+
 [data-theme="dark"] .idea-stage span,
 [data-theme="dark"] .idea-priority span,
-[data-theme="dark"] .idea-domain span,
-[data-theme="dark"] .flashcard-topic span,
-[data-theme="dark"] .essay-category span,
-[data-theme="dark"] .essay-reading-time span,
+[data-theme="dark"] .idea-domain span {
+  background-color: #1a1a1a;
+  color: #8B5CF6;
+  border-color: #8B5CF6;
+}
+
 [data-theme="dark"] .post-category span {
   background-color: #1a1a1a;
-  color: #00CED1;
-  border-color: #00CED1;
+  color: #6B7FD7;
+  border-color: #6B7FD7;
 }
 
 [data-theme="dark"] .idea-content,

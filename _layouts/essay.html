@@ -69,8 +69,20 @@ layout: default
     {% endif %}
   </header>
 
-  {% if page.categories and page.categories.size > 0 or content %}
+  {% if page.topic or page.tags and page.tags.size > 0 or page.categories and page.categories.size > 0 or content %}
   <div class="essay-metadata">
+    {% if page.topic %}
+    <div class="essay-topic">
+      <strong>
+        {% if page.lang == "fr" %}
+          Sujet:
+        {% else %}
+          Topic:
+        {% endif %}
+      </strong>
+      <span>{{ page.topic }}</span>
+    </div>
+    {% endif %}
     {% if page.categories and page.categories.size > 0 %}
     <div class="essay-category">
       <strong>
