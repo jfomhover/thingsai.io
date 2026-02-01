@@ -27,7 +27,7 @@ The question at stake: what cognitive processes made traditional coding effectiv
 
 I like writing on paper, and I like writing on my laptop, and I like writing with AI. My output is different across these three environments. On paper, my sentences are shorter, more carefully worded, more in-depth. It's not better writing—it's different. For a long time I couldn't explain why.
 
-The answer came from Donald Schön's work on reflective practice [[Schön, 1983](#schon1983); [Schön, 1991](#schon1991)]. He describes a [seeing-drawing-seeing](../../knowledge/science/seeing-drawing-seeing.md) cycle: you *see* the current situation, *draw* (make a mark, write a line, sketch an idea), then *see again*—the artifact "talks back," revealing what you didn't know you were thinking. The medium shapes this rhythm. The friction between thought and externalization determines how the cycle unfolds.
+The answer came from Donald Schön's work on reflective practice [[Schön, 1983](#schon1983); [Schön, 1991](#schon1991)]. He describes a _seeing-drawing-seeing_ cycle: you *see* the current situation, *draw* (make a mark, write a line, sketch an idea), then *see again*—the artifact "talks back," revealing what you didn't know you were thinking. The medium shapes this rhythm. The friction between thought and externalization determines how the cycle unfolds.
 
 Friction shapes what emerges.
 
@@ -43,7 +43,7 @@ I like coding. I really do. It stimulates my mind in ways that feel deeply rewar
 
 With time and practice, it got much better. The walls receded. I developed intuitions—when to pause, when to push, how to navigate complexity. But I couldn't explain what had changed. The process remained opaque to me, even as I became fluent in it.
 
-Then I encountered computational thinking research. Suddenly I had language for what I'd been doing. What felt intuitive wasn't mysterious anymore—researchers had already documented and named it.
+Then I encountered [computational thinking]({% link _flashcards/en/2026-01-23-computational-thinking.md %}) research. Suddenly I had language for what I'd been doing. What felt intuitive wasn't mysterious anymore—researchers had already documented and named it.
 
 Two concepts anchored everything for me: **"too big for the head"** and **separation of concerns**.
 
