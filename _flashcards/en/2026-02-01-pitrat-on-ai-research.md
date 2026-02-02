@@ -5,7 +5,6 @@ subtitle: "Building Solutions to Understand Problems"
 lang: en
 date: 2026-02-01
 topic: Research
-tags: [ai-research, action-research, methodology, design-science]
 pinned: true
 ---
 While preparing my HDR mémoire in 2013, I discovered [Jacques Pitrat's](https://en.wikipedia.org/wiki/Jacques_Pitrat) 1997 paper "Comment faire de la recherche en intelligence artificielle" buried in the LAFORIA archives (now [LIP6](https://www.lip6.fr)). It was a `.doc` file from another era of AI research. I'm grateful I saved a copy—it seems lost to the internet now, yet its insights still feel to me.
@@ -32,7 +31,7 @@ His methodological wisdom is practical: start implementing early, since insights
 
 Back in 1997, Pitrat wrote for doctoral students navigating PhD grants. He couldn't have foreseen how prescient his work would become thirty years later, as AI deployment reaches every corner of the economy.
 
-### Why This Matters Now
+## Why This Matters Now
 
 In my opinion, Pitrat's two types of research remain relevant today, though their balance has shifted dramatically. We're seeing a proliferation of Type 1 research: building performant AI systems across many domains. ChatGPT, Copilot, Claude, content generation tools—companies are racing to demonstrate practical AI value.
 
