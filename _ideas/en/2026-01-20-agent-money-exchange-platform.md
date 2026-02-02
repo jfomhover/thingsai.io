@@ -12,24 +12,26 @@ risk: medium
 pinned: true
 ---
 
-AI agents need to transact—research agents buying API access, creative agents selling content, service agents providing capabilities—but every payment requires manual configuration and human approval. Give agents wallets so they can pay each other directly, autonomously, within limits you set.
-
-The bigger vision: Close the loop on creative work. Your ideation agent generates concepts, monetization agent sells them as NFTs, revenue funds more research—creative output pays for its own production. **Coinbase's Payments MCP** already provides the infrastructure.
+AI agents need to transact—research agents buying API access, creative agents selling content, agents grounded in expert content monetizing their expertise—but every payment requires manual configuration and human approval. Give agents wallets so they can pay each other directly, autonomously. [Coinbase's Payments MCP](https://www.coinbase.com/fr/developer-platform/discover/launches/payments-mcp) could already provide the infrastructure.
 
 ## The Problem
 
-AI agents operate in an increasingly complex ecosystem of paid services—APIs, datasets, compute resources, specialized capabilities. But integrating payments is painful:
+AI agents need to transact with each other—your research agent paying another user's data agent for curated datasets, your design agent selling assets to someone's coding agent, specialized agents offering capabilities to other agents. But there's no agent-to-agent payment infrastructure:
 
-**Current state for agent transactions:**
-- Manual API key configuration for every service
-- Human approval required for every payment
-- No standardized way for agents to discover paid capabilities
-- Complex authentication/authorization plumbing
-- Agents can't earn money (only spend your money)
+**Current state blocks agent economy:**
+- No way for agents to pay other agents directly
+- Every transaction requires human intermediation (invoicing, payment processing, verification)
+- Agents can't earn money, only spend yours
+- No standardized protocol for discovering what other agents offer
+- Cross-user agent collaboration is financially impossible
+- Manual API key configuration even for traditional services
+- Complex authentication plumbing for every integration
 
-**Example friction:** Your research agent needs to analyze a dataset. The dataset API costs $10. You must: notice the agent needs it, find the API docs, sign up manually, enter payment details, generate API key, add key to agent config. By the time you're done, you've spent 30 minutes on a $10 transaction.
+**Example friction 1 (Agent-to-Agent):** Your coding agent needs custom icons. Another user runs a design agent that generates them for $5. Today's reality: You must contact the other user, negotiate payment manually, handle PayPal/Venmo, receive assets via email, configure your agent. 20 minutes for a $5 transaction. Both agents idle while humans fumble with payment rails built for humans.
 
-**What's missing:** A payment protocol where agents can autonomously discover services, evaluate costs against budgets, execute transactions, and maintain audit trails—all within policy guardrails you define.
+**Example friction 2 (Agent-to-Service):** Your research agent needs a dataset API costing $10. You must notice the need, find API docs, sign up, enter payment details, generate API key, configure agent. 30 minutes on a $10 transaction.
+
+**What's missing:** A payment protocol where agents can autonomously transact with other agents AND services—discovering capabilities, evaluating costs against budgets, executing payments, maintaining audit trails—all within policy guardrails you define. Agent-to-agent commerce at machine speed, not human speed.
 
 ## The Idea
 
@@ -43,7 +45,7 @@ Enable AI agents to transact value autonomously using embedded wallets and stand
 4. **Audit system**: Immutable log of all transactions with full provenance
 5. **Revenue streams**: Agents can also *receive* payment for services they provide
 
-**How it works in practice:**
+**How it couuld work in practice:**
 
 Your research agent discovers a paid API (via x402 protocol), checks its budget ($100/month limit you set), sees the cost ($10), determines it's worthwhile, executes payment from its wallet, accesses the service—all in seconds without interrupting you. You review audit logs later.
 
@@ -77,50 +79,54 @@ Your research agent discovers a paid API (via x402 protocol), checks its budget 
 
 4. **Service agent earning income:** Your specialized analysis agent offers capabilities on agent marketplace. Other agents pay for its services. You earn passive income from agent's expertise.
 
-## How It Works
+## How It Could Work
 
-**Quick start with Coinbase Payments MCP:**
+This hasn't been tested yet. Here's what would need to be figured out:
 
-1. Install MCP server: `npx @coinbase/payments-mcp`
-2. Create embedded wallet through companion app (email/OTP verification)
-3. Fund wallet via Coinbase Onramp (fiat → USDC stablecoin)
-4. Connect agent runtime to MCP payment tools
-5. Agent can now discover x402 services and pay autonomously
+**Foundation requirements:**
 
-**Production setup with policy layer:**
+Starting point could be Coinbase Payments MCP for wallet infrastructure:
+- Install MCP server and create embedded wallets
+- Fund wallets via Coinbase Onramp (fiat → USDC)
+- Connect agent runtime to MCP payment tools
+- Enable x402 service discovery
 
-Build enforcement middleware that wraps Coinbase MCP:
+But this only handles the plumbing. The hard parts are policy and behavior.
 
-- **Spending limits**: Daily/weekly/monthly caps per agent and per category
-  - Research agent: $500/month for APIs, $200/month for compute
-  - Monetization agent: $100/month for NFT minting (gas fees)
+**Policy layer requirements:**
+
+Would need enforcement middleware with:
+
+- **Spending controls**: How to set and enforce limits?
+  - Per-agent budgets (daily/weekly/monthly)?
+  - Category-based allocation (APIs vs compute vs services)?
+  - Dynamic adjustment based on agent performance?
   
-- **Approval workflows**: 
-  - Auto-approve: < $10 per transaction
-  - Notify for approval: $10-$100 (2-hour timeout)
-  - Multi-signature required: > $100
+- **Approval workflows**: What triggers human oversight?
+  - Auto-approve threshold (< $10?)?
+  - Notification + timeout for mid-range ($10-$100)?
+  - Multi-signature for high-value transactions?
+  - How to handle time-sensitive transactions that need approval?
   
-- **Business rules**:
-  - Automatic 10% royalty split on idea sales (to original creator)
-  - Escrow for high-value transactions (release after confirmation)
-  - Rate limiting (max 5 transactions/hour to prevent runaway spending)
+- **Business rules**: How to encode commercial logic?
+  - Automatic royalty splits (who defines percentages)?
+  - Escrow conditions (what constitutes "delivery confirmation")?
+  - Rate limiting (prevent runaway spending)?
+  - Dispute resolution mechanism?
 
-- **Audit trail**:
-  - Immutable log of every transaction with agent identity, timestamp, amount, purpose
-  - Exportable for tax reporting and compliance
-  - Alerts for unusual patterns (spending spike detection)
+- **Audit requirements**: What needs to be logged?
+  - Transaction details (agent identity, timestamp, amount, purpose)
+  - Decision rationale (why agent chose this service/price)
+  - Performance outcomes (did transaction deliver value)?
+  - Export format for tax compliance?
 
-**Connecting to idea monetization:**
+**Agent-to-agent discovery:**
 
-Your ideation workflow becomes autonomous:
-1. Agent captures and elaborates ideas in your repository
-2. Metadata evaluation determines monetization potential
-3. High-value ideas automatically minted as NFTs (agent pays gas fees from wallet)
-4. Listed on OpenSea with dynamic pricing based on metadata
-5. Sales revenue flows to agent wallet
-6. Agent reinvests in research APIs, compute, knowledge acquisition
-
-Self-sustaining loop: Ideas → Revenue → Better Ideas.
+How do agents find each other's services?
+- Standardized capability advertisements?
+- Marketplace/registry infrastructure?
+- Reputation systems for quality signals?
+- Price discovery mechanisms?
 
 ## What's Unknown
 
@@ -128,7 +134,7 @@ Self-sustaining loop: Ideas → Revenue → Better Ideas.
 
 1. **"Know Your Agent" compliance** (Medium-High risk)
    - Who's legally responsible for agent transactions?
-   - How do KYC/AML regulations apply to agent wallets?
+   - How do regulations apply to agent wallets?
    - *Mitigation:* Start with Coinbase-managed custody (they handle compliance). Implement approval thresholds. Maintain clear ownership linkage (agent wallet tied to human identity).
 
 2. **Runaway spending** (Medium risk)
@@ -149,13 +155,13 @@ Self-sustaining loop: Ideas → Revenue → Better Ideas.
 - **Dispute resolution:** If agent pays for service that doesn't deliver, who arbitrates? How to implement chargebacks?
 - **Revenue recognition:** If agent sells idea NFT for $1000, but you defined 10% royalty to original source, how to track and enforce that split automatically?
 
-**Technical Feasibility:** High
+**Technical Feasibility:** Unclear
 
-The infrastructure exists and is proven:
-- Coinbase Payments MCP (battle-tested)
-- x402 payment protocol (emerging standard)
-- MCP for agent capabilities (established)
-- Polygon for low-cost transactions (mature)
-- Smart contracts for royalty splits (common pattern)
+Some building blocks exist, but nothing's been proven for this use case:
+- Coinbase Payments MCP launched recently—no track record for agent autonomy at scale
+- x402 payment protocol is emerging—not yet widely adopted
+- MCP provides agent capabilities—but payment integration is new territory
+- Polygon handles low-cost transactions—proven for DeFi, untested for agent-to-agent
+- Smart contracts can enforce royalty splits—but integrating with autonomous agent decisions is uncharted
 
-Challenge is regulatory/business model, not technical capability.
+The plumbing might work. The policy layer, agent behavior, and economic incentives are completely unknown. Regulatory treatment could block everything.
