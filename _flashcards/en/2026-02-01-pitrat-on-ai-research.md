@@ -9,7 +9,7 @@ pinned: true
 ---
 While preparing my HDR mémoire in 2013, I discovered [Jacques Pitrat's](https://en.wikipedia.org/wiki/Jacques_Pitrat) 1997 paper "Comment faire de la recherche en intelligence artificielle" buried in the LAFORIA archives (now [LIP6](https://www.lip6.fr)). It was a `.doc` file from another era of AI research. I'm grateful I saved a copy—it seems lost to the internet now, yet its insights still feel to me.
 
-<img src="/assets/images/pitrat-1997-first-page.png" alt="Pitrat's 1997 paper title page" width="200" style="float: right; margin-left: 20px; margin-bottom: 10px;">
+<img src="/assets/images/pitrat-1997-first-page.png" alt="Pitrat's 1997 paper title page" width="200" class="content-image-right">
 
 What resonated most in Pitrat's paper was how he articulated something I was experiencing during my work at the intersection of AI and design science: AI research inherently serves two distinct purposes. We advance AI as a technical discipline, yes—but we also use AI experimentation as a method to illuminate poorly-understood problem domains.
 

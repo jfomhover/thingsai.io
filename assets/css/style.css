@@ -327,6 +327,26 @@ body {
   background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%);
 }
 
+/* Content images with float right on desktop */
+.content-image-right {
+  height: auto;
+  float: right;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+  .content-image-right {
+    float: none;
+    display: block;
+    margin: 15px auto;
+    width: 100% !important;
+    max-width: 300px;
+  }
+}
+
 /* Main content */
 .page-content {
   padding: 40px 0;
