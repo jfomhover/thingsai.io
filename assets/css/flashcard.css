@@ -344,8 +344,9 @@
 /* Responsive styles */
 @media screen and (max-width: 768px) {
   .flashcard {
-    padding: 20px;
-    margin: 10px;
+    padding: 20px 15px;
+    margin: 10px 5px;
+    border-radius: 8px;
   }
   
   .flashcard-badge {
@@ -363,9 +364,15 @@
     font-size: 16px;
   }
   
+  .flashcard-header {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  
   .flashcard-metadata {
     flex-direction: column;
     gap: 15px;
+    padding: 15px;
   }
   
   .flashcard-content {

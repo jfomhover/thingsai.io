@@ -13,7 +13,10 @@ _How AI-assisted coding eliminates the contemplative pauses between architecture
 
 _📌 **Thesis** - I argue that traditional coding builds expertise through oscillation : descending into implementation, returning to architecture, learning through the friction. AI-assisted coding eliminates that rhythm, keeping developers at the system level continuously. This enables sustained architectural focus and demands new precision in articulating design. But it raises a developmental question: can beginners build expertise through articulation alone? or does expertise require the full cycle?_
 
-_🌀 **Prompt Spin** (I used AI to rewrite, can you guess the prompt?) - "Claude was refactoring five files at once—again. Decomposing the system architecture exactly how I wanted it. The code was elegant, precise, *right*. I should have been thrilled. But as I sat at my keyboard, watching the AI write code I used to write myself, I couldn't help but wonder: are we eliminating the very pauses that make us good at what we do? Sure, vibe-coding lets me focus on the big picture—but what if I like the small picture? The pruning, the polishing of docstrings, the typing of arguments, the quiet moment of sitting with what I've made. Was I building my mind while I thought I was just beautifying code?"_
+<details class="easter-egg">
+<summary>🌀 <strong>Prompt Spin</strong> – Click for the AI-rewritten opening (can you guess the prompt I used?)</summary>
+<p><em>"Claude was refactoring five files at once—again. Decomposing the system architecture exactly how I wanted it. The code was elegant, precise, <i>right</i>. I should have been thrilled. But as I sat at my keyboard, watching the AI write code I used to write myself, I couldn't help but wonder: are we eliminating the very pauses that make us good at what we do? Sure, vibe-coding lets me focus on the big picture—but what if I like the small picture? The pruning, the polishing of docstrings, the typing of arguments, the quiet moment of sitting with what I've made. Was I building my mind while I thought I was just beautifying code?"</em></p>
+</details>
 
 ## Introduction
 
